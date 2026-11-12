@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AutoBid Competitor (mike-bids)
 
-## Getting Starte
+A small web page with a deposit and bidding limit calculator. You enter how much you would deposit and how much you want to bid, and it shows your bidding limit and how much more you would need to deposit to reach the bid you want.
 
-First, run the development server:
+## What it does
+
+- Bidding limit is 10 times the deposit amount.
+- If your desired bid is above that limit, it tells you the extra deposit needed (desired bid divided by 10, minus your deposit).
+- You can pick a payment method label (credit card or crypto) and press "Confirm Deposit" to see a confirmation message.
+- This is a front-end mock-up only. No payment is taken, nothing is sent to a server and there is no backend or database.
+
+## Tech stack
+
+- Next.js 15 (App Router) with React 19
+- TypeScript
+- Tailwind CSS 4
+- ESLint
+
+## Run it locally
+
+You need Node.js 18.18 or newer.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 and press "Show Calculator".
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build a static demo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project is configured to export plain static files, so it can be hosted on any static host (GitHub Pages, Netlify, Vercel, S3 and so on). No secrets or API keys are needed.
 
-## Learn More
+```bash
+npm install
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+The static site is written to the `out/` folder. Serve it with any static server, for example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx serve out
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Note: the build downloads the Geist fonts from Google Fonts through `next/font`, so it needs internet access.
 
-## Deploy on Vercel
+## Status
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Prototype. The calculator works, but it is a demo of an idea and not a real bidding or payments product.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project layout
+
+- `src/app/page.tsx`: home page with the show/hide button
+- `src/app/components/DepositCalculator.tsx`: the calculator component
+- `src/app/layout.tsx`: page title, fonts and layout
+
+## Credits
+
+Bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app). Fonts are [Geist](https://vercel.com/font) by Vercel.
